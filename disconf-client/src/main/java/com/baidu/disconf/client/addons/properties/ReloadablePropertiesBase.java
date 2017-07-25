@@ -10,14 +10,17 @@ import org.slf4j.LoggerFactory;
 /**
  * Useful base class for implementing {@link ReloadableProperties}.
  */
+@SuppressWarnings("unchecked")
 public class ReloadablePropertiesBase extends DelegatingProperties implements ReloadableProperties {
 
-    protected static final Logger LOGGER = LoggerFactory.getLogger(ReloadablePropertiesBase.class);
+	private static final long serialVersionUID = -6350391066141715651L;
+
+	protected static final Logger LOGGER = LoggerFactory.getLogger(ReloadablePropertiesBase.class);
 
     private List<IReloadablePropertiesListener> listeners = new ArrayList<IReloadablePropertiesListener>();
     private Properties internalProperties;
 
-    public void setListeners(List listeners) {
+    public void setListeners(List<IReloadablePropertiesListener> listeners) {
         this.listeners = listeners;
     }
 

@@ -56,7 +56,7 @@ public class ReloadablePropertiesBase extends DelegatingProperties implements Re
      *
      * @param oldProperties
      */
-    protected void notifyPropertiesChanged(Properties oldProperties) {
+    public void notifyPropertiesChanged(Properties oldProperties) {
         PropertiesReloadedEvent event = new PropertiesReloadedEvent(this, oldProperties);
         for (IReloadablePropertiesListener listener : listeners) {
             listener.propertiesReloaded(event);
@@ -68,7 +68,7 @@ public class ReloadablePropertiesBase extends DelegatingProperties implements Re
      *
      * @param properties
      */
-    protected void setProperties(Properties properties) {
+    public void setProperties(Properties properties) {
         Properties oldProperties = internalProperties;
         synchronized(this) {
             internalProperties = properties;

@@ -278,16 +278,6 @@
     <profiles>
         <profile>
             <id>release</id>
-            <distributionManagement>
-                <repository>
-					<id>nexus-releases</id>
-					<url>http://nexus.appleframework.com:8081/nexus/content/repositories/releases/</url>
-				</repository>
-				<snapshotRepository>
-					<id>nexus-snapshots</id>
-					<url>http://nexus.appleframework.com:8081/nexus/content/repositories/snapshots/</url>
-				</snapshotRepository>
-            </distributionManagement>
             <build>
                 <plugins>
                     <!-- Source -->

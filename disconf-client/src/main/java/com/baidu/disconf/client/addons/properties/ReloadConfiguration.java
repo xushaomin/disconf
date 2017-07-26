@@ -7,13 +7,14 @@ import java.util.List;
  * 线程方式的reload
  */
 public class ReloadConfiguration implements Runnable {
+	
     List<ReconfigurableBean> reconfigurableBeans;
 
-    public void setReconfigurableBeans(List reconfigurableBeans) {
+    public void setReconfigurableBeans(List<ReconfigurableBean> reconfigurableBeans) {
         // early type check, and avoid aliassing
         this.reconfigurableBeans = new ArrayList<ReconfigurableBean>();
-        for (Object o : reconfigurableBeans) {
-            this.reconfigurableBeans.add((ReconfigurableBean) o);
+        for (ReconfigurableBean o : reconfigurableBeans) {
+            this.reconfigurableBeans.add(o);
         }
     }
 

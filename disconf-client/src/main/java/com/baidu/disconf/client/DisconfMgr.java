@@ -73,10 +73,6 @@ public class DisconfMgr implements ApplicationContextAware {
             return;
         }
 
-        //
-        //
-        //
-
         try {
 
             // 导入配置
@@ -103,7 +99,6 @@ public class DisconfMgr implements ApplicationContextAware {
             LOGGER.info("******************************* DISCONF END FIRST SCAN *******************************");
 
         } catch (Exception e) {
-
             LOGGER.error(e.toString(), e);
         }
     }
@@ -112,55 +107,41 @@ public class DisconfMgr implements ApplicationContextAware {
      * 第二次扫描, 动态扫描, for annotation config
      */
     protected synchronized void secondScan() {
-
         // 该函数必须第一次运行后才能运行
         if (!isFirstInit) {
             LOGGER.info("should run First Scan before Second Scan.");
             return;
         }
-
         // 第二次扫描也只能做一次
         if (isSecondInit) {
             LOGGER.info("should not run twice.");
             return;
         }
-
         LOGGER.info("******************************* DISCONF START SECOND SCAN *******************************");
-
         try {
-
             // 扫描回调函数
             if (scanMgr != null) {
                 scanMgr.secondScan();
             }
-
             // 注入数据至配置实体中
             // 获取数据/注入/Watch
             if (disconfCoreMgr != null) {
                 disconfCoreMgr.inject2DisconfInstance();
             }
-
         } catch (Exception e) {
             LOGGER.error(e.toString(), e);
         }
-
         isSecondInit = true;
 
-        //
         // 不开启 则不要打印变量map
-        //
         if (DisClientConfig.getInstance().ENABLE_DISCONF) {
 
-            //
-            String data = DisconfStoreProcessorFactory.getDisconfStoreFileProcessor()
-                    .confToString();
+            String data = DisconfStoreProcessorFactory.getDisconfStoreFileProcessor().confToString();
             if (!StringUtils.isEmpty(data)) {
                 LOGGER.info("Conf File Map: {}", data);
             }
 
-            //
-            data = DisconfStoreProcessorFactory.getDisconfStoreItemProcessor()
-                    .confToString();
+            data = DisconfStoreProcessorFactory.getDisconfStoreItemProcessor().confToString();
             if (!StringUtils.isEmpty(data)) {
                 LOGGER.info("Conf Item Map: {}", data);
             }
@@ -172,28 +153,21 @@ public class DisconfMgr implements ApplicationContextAware {
      * reloadable config file scan, for xml config
      */
     public synchronized void reloadableScan(String fileName) {
-
         if (!isFirstInit) {
             return;
         }
-
         if (DisClientConfig.getInstance().ENABLE_DISCONF) {
             try {
-
                 if (!DisClientConfig.getInstance().getIgnoreDisconfKeySet().contains(fileName)) {
-
                     if (scanMgr != null) {
                         scanMgr.reloadableScan(fileName);
                     }
-
                     if (disconfCoreMgr != null) {
                         disconfCoreMgr.processFile(fileName);
                     }
                     LOGGER.debug("disconf reloadable file: {}", fileName);
                 }
-
             } catch (Exception e) {
-
                 LOGGER.error(e.toString(), e);
             }
         }
@@ -203,21 +177,17 @@ public class DisconfMgr implements ApplicationContextAware {
      * @Description: 总关闭
      */
     public synchronized void close() {
-
         try {
-
             // disconfCoreMgr
             LOGGER.info("******************************* DISCONF CLOSE *******************************");
             if (disconfCoreMgr != null) {
                 disconfCoreMgr.release();
             }
-
             // close, 必须将其设置为False,以便重新更新
             isFirstInit = false;
             isSecondInit = false;
 
         } catch (Exception e) {
-
             LOGGER.error("DisConfMgr close Failed.", e);
         }
     }

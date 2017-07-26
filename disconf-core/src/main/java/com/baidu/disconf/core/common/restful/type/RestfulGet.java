@@ -37,11 +37,10 @@ public class RestfulGet<T> implements UnreliableInterface {
     /**
      * Get数据
      */
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public T call() throws Exception {
-
         T value = HttpClientUtil.execute(request, httpResponseCallbackHandler);
-
         return value;
     }
 }

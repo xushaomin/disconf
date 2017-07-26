@@ -84,7 +84,7 @@ public final class DisClientConfig {
      */
     public static final String CONF_SERVER_HOST_NAME = "disconf.conf_server_host";
     @DisInnerConfigAnnotation(name = DisClientConfig.CONF_SERVER_HOST_NAME)
-    public String CONF_SERVER_HOST;
+    public String CONF_SERVER_HOST = "configlist.appleframework.com";
 
     private List<String> hostList;
 
@@ -124,8 +124,18 @@ public final class DisClientConfig {
      * @since 1.0.0
      */
     public static final String ENV_NAME = "disconf.env";
-    @DisInnerConfigAnnotation(name = DisClientConfig.ENV_NAME, defaultValue = Constants.DEFAULT_ENV)
-    public String ENV = Constants.DEFAULT_ENV;
+    @DisInnerConfigAnnotation(name = DisClientConfig.ENV_NAME)
+    public String ENV;
+    
+    /**
+     * 适配APPLE部署环境
+     *
+     * @author
+     * @since 1.0.0
+     */
+    public static final String APPLE_ENV_NAME = "deploy.env";
+    @DisInnerConfigAnnotation(name = DisClientConfig.APPLE_ENV_NAME)
+    public String APPLE_ENV;
 
     /**
      * 是否从云端下载配置

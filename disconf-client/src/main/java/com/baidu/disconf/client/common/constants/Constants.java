@@ -17,4 +17,7 @@ public class Constants {
      */
     public static final String HOST_PROPERTIES_KEY = "VCAP_APP_HOST";
     public static final String PORT_PROPERTIES_KEY = "VCAP_APP_PORT";
+    
+    public static final String KEY_DEPLOY_ENV = "deploy.env";
+	public static final String KEY_ENV = "env";
 }

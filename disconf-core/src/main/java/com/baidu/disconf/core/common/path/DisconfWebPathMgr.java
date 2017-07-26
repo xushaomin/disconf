@@ -1,6 +1,5 @@
 package com.baidu.disconf.core.common.path;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 

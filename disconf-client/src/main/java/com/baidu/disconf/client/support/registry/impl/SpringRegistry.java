@@ -17,6 +17,7 @@ import com.baidu.disconf.client.support.registry.Registry;
 /**
  * Created by knightliao on 15/11/26.
  */
+@SuppressWarnings("unchecked")
 public class SpringRegistry implements Registry, ApplicationContextAware {
 
     protected static final Logger LOGGER = LoggerFactory.getLogger(SpringRegistry.class);
@@ -26,7 +27,8 @@ public class SpringRegistry implements Registry, ApplicationContextAware {
 
     private SimpleRegistry simpleRegistry = new SimpleRegistry();
 
-    @Override
+    @SuppressWarnings("static-access")
+	@Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.applicationContext = applicationContext;
     }
@@ -92,7 +94,7 @@ public class SpringRegistry implements Registry, ApplicationContextAware {
         return applicationContext.getBeansOfType(type);
     }
 
-    protected <T> T getTargetObject(Object proxy, Class<T> targetClass) throws Exception {
+	protected <T> T getTargetObject(Object proxy, Class<T> targetClass) throws Exception {
         if (AopUtils.isJdkDynamicProxy(proxy)) {
             return (T) ((Advised) proxy).getTargetSource().getTarget();
         } else if (AopUtils.isCglibProxy(proxy)) {

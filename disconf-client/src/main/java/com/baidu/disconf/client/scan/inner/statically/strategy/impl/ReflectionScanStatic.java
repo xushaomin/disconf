@@ -174,7 +174,8 @@ public class ReflectionScanStatic implements ScanStaticStrategy {
     /**
      * 扫描基本信息
      */
-    private ScanStaticModel scanBasicInfo(List<String> packNameList) {
+    @SuppressWarnings("unchecked")
+	private ScanStaticModel scanBasicInfo(List<String> packNameList) {
 
         ScanStaticModel scanModel = new ScanStaticModel();
 
@@ -215,12 +216,9 @@ public class ReflectionScanStatic implements ScanStaticStrategy {
         scanModel.setDisconfUpdateService(classdata);
 
         // update pipeline
-        Set<Class<? extends IDisconfUpdatePipeline>> iDisconfUpdatePipeline = reflections.getSubTypesOf
-                (IDisconfUpdatePipeline
-                        .class);
+        Set<Class<? extends IDisconfUpdatePipeline>> iDisconfUpdatePipeline = reflections.getSubTypesOf(IDisconfUpdatePipeline.class);
         if (iDisconfUpdatePipeline != null && iDisconfUpdatePipeline.size() != 0) {
-            scanModel.setiDisconfUpdatePipeline((Class<IDisconfUpdatePipeline>) iDisconfUpdatePipeline
-                    .toArray()[0]);
+            scanModel.setiDisconfUpdatePipeline((Class<IDisconfUpdatePipeline>) iDisconfUpdatePipeline.toArray()[0]);
         }
 
         return scanModel;

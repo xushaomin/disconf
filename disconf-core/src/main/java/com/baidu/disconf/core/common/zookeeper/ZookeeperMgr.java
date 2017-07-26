@@ -25,10 +25,7 @@ public class ZookeeperMgr {
     protected static final Logger LOGGER = LoggerFactory.getLogger(ZookeeperMgr.class);
 
     private ResilientActiveKeyValueStore store;
-
-    private String curHost = "";
-    private String curDefaultPrefixString = "";
-
+    
     /**
      * @return void
      *
@@ -38,15 +35,10 @@ public class ZookeeperMgr {
      * @date 2013-6-14
      */
     public void init(String host, String defaultPrefixString, boolean debug) throws Exception {
-
         try {
-
             initInternal(host, defaultPrefixString, debug);
-
             LOGGER.debug("ZookeeperMgr init.");
-
         } catch (Exception e) {
-
             throw new Exception("zookeeper init failed. ", e);
         }
     }
@@ -91,9 +83,6 @@ public class ZookeeperMgr {
     private void initInternal(String hosts, String defaultPrefixString, boolean debug)
             throws IOException, InterruptedException {
 
-        curHost = hosts;
-        curDefaultPrefixString = defaultPrefixString;
-
         store = new ResilientActiveKeyValueStore(debug);
         store.connect(hosts);
 
@@ -108,26 +97,20 @@ public class ZookeeperMgr {
      *
      * @param dir
      */
-    public void makeDir(String dir, String data) {
-
-        try {
-
-            boolean deafult_path_exist = store.exists(dir);
-            if (!deafult_path_exist) {
-                LOGGER.info("create: " + dir);
-                this.writePersistentUrl(dir, data);
-            } else {
-            }
-
-        } catch (KeeperException e) {
-
-            LOGGER.error("cannot create path: " + dir, e);
-
-        } catch (Exception e) {
-
-            LOGGER.error("cannot create path: " + dir, e);
-        }
-    }
+	public void makeDir(String dir, String data) {
+		try {
+			boolean deafult_path_exist = store.exists(dir);
+			if (!deafult_path_exist) {
+				LOGGER.info("create: " + dir);
+				this.writePersistentUrl(dir, data);
+			} else {
+			}
+		} catch (KeeperException e) {
+			LOGGER.error("cannot create path: " + dir, e);
+		} catch (Exception e) {
+			LOGGER.error("cannot create path: " + dir, e);
+		}
+	}
 
     /**
      * @return void

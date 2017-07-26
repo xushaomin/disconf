@@ -46,7 +46,6 @@ public class DisClientSysConfig {
         String filePathInternal = filename;
 
         if (filePath != null) {
-
             filePathInternal = filePath;
         }
 

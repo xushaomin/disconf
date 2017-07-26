@@ -191,8 +191,7 @@ public class RestfulMgrImpl implements RestfulMgr {
      *
      * @throws Exception
      */
-    private File transfer2SpecifyDir(File srcFile, String targetDirPath, String fileName,
-                                     boolean isMove) throws Exception {
+    private File transfer2SpecifyDir(File srcFile, String targetDirPath, String fileName, boolean isMove) throws Exception {
 
         // make dir
         OsUtil.makeDirs(targetDirPath);
@@ -214,8 +213,7 @@ public class RestfulMgrImpl implements RestfulMgr {
      *
      * @return
      */
-    private Object retry4ConfDownload(RemoteUrl remoteUrl, File localTmpFile, int retryTimes, int sleepSeconds)
-            throws Exception {
+    private Object retry4ConfDownload(RemoteUrl remoteUrl, File localTmpFile, int retryTimes, int sleepSeconds) throws Exception {
         Exception ex = null;
         for (URL url : remoteUrl.getUrls()) {
 

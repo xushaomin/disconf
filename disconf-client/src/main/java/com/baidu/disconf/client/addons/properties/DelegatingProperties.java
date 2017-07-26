@@ -15,8 +15,12 @@ import java.util.Set;
  * Overrides all methods of java.util.Properties using delegation.
  * Would implement instead of extend java.util.Properties if it was an interface.
  */
+@SuppressWarnings({ "rawtypes", "unchecked" })
 public abstract class DelegatingProperties extends Properties {
-    protected abstract Properties getDelegate();
+    
+	private static final long serialVersionUID = 1L;
+
+	protected abstract Properties getDelegate();
 
     public void load(InputStream inStream) throws IOException {
         getDelegate().load(inStream);
@@ -30,11 +34,12 @@ public abstract class DelegatingProperties extends Properties {
         getDelegate().list(out);
     }
 
-    public Enumeration propertyNames() {
+	public Enumeration propertyNames() {
         return getDelegate().propertyNames();
     }
 
-    public void save(OutputStream out, String header) {
+    @SuppressWarnings("deprecation")
+	public void save(OutputStream out, String header) {
         getDelegate().save(out, header);
     }
 
@@ -98,11 +103,11 @@ public abstract class DelegatingProperties extends Properties {
         return getDelegate().values();
     }
 
-    public Enumeration elements() {
+	public Enumeration elements() {
         return getDelegate().elements();
     }
 
-    public Enumeration keys() {
+	public Enumeration keys() {
         return getDelegate().keys();
     }
 

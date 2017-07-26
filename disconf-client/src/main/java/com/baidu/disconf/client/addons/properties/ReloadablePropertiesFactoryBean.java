@@ -26,10 +26,11 @@ import com.baidu.disconf.client.DisconfMgr;
  * <p/>
  * 真正的 reload bean 定义，它可以定义多个 resource 为 reload config file
  */
+@SuppressWarnings("unused")
 public class ReloadablePropertiesFactoryBean extends PropertiesFactoryBean implements DisposableBean,
         ApplicationContextAware {
 
-    private static ApplicationContext applicationContext;
+	private static ApplicationContext applicationContext;
 
     protected static final Logger log = LoggerFactory.getLogger(ReloadablePropertiesFactoryBean.class);
 
@@ -127,11 +128,11 @@ public class ReloadablePropertiesFactoryBean extends PropertiesFactoryBean imple
      *
      * @param listeners
      */
-    public void setListeners(final List listeners) {
+    public void setListeners(final List<IReloadablePropertiesListener> listeners) {
         // early type check, and avoid aliassing
         this.preListeners = new ArrayList<IReloadablePropertiesListener>();
-        for (Object o : listeners) {
-            preListeners.add((IReloadablePropertiesListener) o);
+        for (IReloadablePropertiesListener o : listeners) {
+            preListeners.add(o);
         }
     }
 
@@ -236,7 +237,8 @@ public class ReloadablePropertiesFactoryBean extends PropertiesFactoryBean imple
         return this.getClass().getSimpleName();
     }
 
-    @Override
+    @SuppressWarnings("static-access")
+	@Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.applicationContext = applicationContext;
     }
@@ -244,9 +246,12 @@ public class ReloadablePropertiesFactoryBean extends PropertiesFactoryBean imple
     /**
      * 回调自己
      */
-    class ReloadablePropertiesImpl extends ReloadablePropertiesBase implements ReconfigurableBean {
+    @SuppressWarnings("unchecked")
+	class ReloadablePropertiesImpl extends ReloadablePropertiesBase implements ReconfigurableBean {
+    	
+		private static final long serialVersionUID = 1L;
 
-        // reload myself
+		// reload myself
         public void reloadConfiguration() throws Exception {
             ReloadablePropertiesFactoryBean.this.reload(false);
         }

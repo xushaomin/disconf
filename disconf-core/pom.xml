@@ -32,7 +32,6 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>19.0-rc2</version>
         </dependency>
 
         <dependency>
@@ -77,6 +76,7 @@
                     <artifactId>jms</artifactId>
                 </exclusion>
             </exclusions>
+            <scope>provided</scope>
         </dependency>
 
         <!-- log dependencies -->
@@ -229,14 +229,14 @@
         <profile>
             <id>release</id>
             <distributionManagement>
-                <snapshotRepository>
-                    <id>nexus-release</id>
-                    <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-                </snapshotRepository>
                 <repository>
-                    <id>nexus-release</id>
-                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-                </repository>
+					<id>nexus-releases</id>
+					<url>http://nexus.appleframework.com:8081/nexus/content/repositories/releases/</url>
+				</repository>
+				<snapshotRepository>
+					<id>nexus-snapshots</id>
+					<url>http://nexus.appleframework.com:8081/nexus/content/repositories/snapshots/</url>
+				</snapshotRepository>
             </distributionManagement>
             <build>
                 <plugins>

@@ -48,13 +48,23 @@ public class DisInnerConfigHelper {
 
         // 版本
         if (StringUtils.isEmpty(DisClientConfig.getInstance().VERSION)) {
-            throw new Exception("settings: " + DisClientConfig.VERSION_NAME + " cannot find");
+        	if (StringUtils.isEmpty(DisClientConfig.getInstance().APPLE_VERSION)) {
+                throw new Exception("settings: " + DisClientConfig.VERSION_NAME + " cannot find");
+        	}
+        	else {
+        		DisClientConfig.getInstance().VERSION = DisClientConfig.getInstance().APPLE_VERSION;
+        	}
         }
         LOGGER.info("SERVER " + DisClientConfig.VERSION_NAME + ": " + DisClientConfig.getInstance().VERSION);
 
         // APP名
         if (StringUtils.isEmpty(DisClientConfig.getInstance().APP)) {
-            throw new Exception("settings: " + DisClientConfig.APP_NAME + " cannot find");
+        	if (StringUtils.isEmpty(DisClientConfig.getInstance().APPLE_APP)) {
+                throw new Exception("settings: " + DisClientConfig.APP_NAME + " cannot find");
+        	}
+        	else {
+        		DisClientConfig.getInstance().APP = DisClientConfig.getInstance().APPLE_APP;
+        	}
         }
         LOGGER.info("SERVER " + DisClientConfig.APP_NAME + ": " + DisClientConfig.getInstance().APP);
 

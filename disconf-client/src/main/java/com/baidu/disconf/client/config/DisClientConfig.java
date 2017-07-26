@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 
 import com.baidu.disconf.client.config.inner.DisInnerConfigAnnotation;
 import com.baidu.disconf.client.support.DisconfAutowareConfig;
-import com.baidu.disconf.core.common.constants.Constants;
 
 /**
  * Disconf Client的用户配置文件
@@ -97,6 +96,16 @@ public final class DisClientConfig {
     public static final String APP_NAME = "disconf.app";
     @DisInnerConfigAnnotation(name = DisClientConfig.APP_NAME)
     public String APP;
+    
+    /**
+     * apple app
+     *
+     * @author
+     * @since 1.0.0
+     */
+    public static final String APPLE_APP_NAME = "deploy.app";
+    @DisInnerConfigAnnotation(name = DisClientConfig.APPLE_APP_NAME)
+    public String APPLE_APP;
 
     /**
      * 版本
@@ -105,8 +114,18 @@ public final class DisClientConfig {
      * @since 1.0.0
      */
     public static final String VERSION_NAME = "disconf.version";
-    @DisInnerConfigAnnotation(name = DisClientConfig.VERSION_NAME, defaultValue = Constants.DEFAULT_VERSION)
-    public String VERSION = Constants.DEFAULT_VERSION;
+    @DisInnerConfigAnnotation(name = DisClientConfig.VERSION_NAME)
+    public String VERSION;
+    
+    /**
+     * APPLE版本
+     *
+     * @author
+     * @since 1.0.0
+     */
+    public static final String APPLE_VERSION_NAME = "deploy.version";
+    @DisInnerConfigAnnotation(name = DisClientConfig.APPLE_VERSION_NAME)
+    public String APPLE_VERSION;
 
     /**
      * 主或备

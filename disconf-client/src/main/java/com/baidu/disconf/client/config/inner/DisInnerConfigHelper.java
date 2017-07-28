@@ -49,7 +49,8 @@ public class DisInnerConfigHelper {
         // 版本
         if (StringUtils.isEmpty(DisClientConfig.getInstance().VERSION)) {
         	if (StringUtils.isEmpty(DisClientConfig.getInstance().APPLE_VERSION)) {
-                throw new Exception("settings: " + DisClientConfig.VERSION_NAME + " cannot find");
+        		if(DisClientConfig.getInstance().ENABLE_DISCONF)
+        			throw new Exception("settings: " + DisClientConfig.VERSION_NAME + " cannot find");
         	}
         	else {
         		DisClientConfig.getInstance().VERSION = DisClientConfig.getInstance().APPLE_VERSION;

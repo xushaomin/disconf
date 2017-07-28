@@ -61,7 +61,8 @@ public class DisInnerConfigHelper {
         // APP名
         if (StringUtils.isEmpty(DisClientConfig.getInstance().APP)) {
         	if (StringUtils.isEmpty(DisClientConfig.getInstance().APPLE_APP)) {
-                throw new Exception("settings: " + DisClientConfig.APP_NAME + " cannot find");
+        		if(DisClientConfig.getInstance().ENABLE_DISCONF)
+        			throw new Exception("settings: " + DisClientConfig.APP_NAME + " cannot find");
         	}
         	else {
         		DisClientConfig.getInstance().APP = DisClientConfig.getInstance().APPLE_APP;
@@ -74,7 +75,8 @@ public class DisInnerConfigHelper {
         	String env = getDeployEnv();
         	if(StringUtils.isEmpty(env)) {
         		if (StringUtils.isEmpty(DisClientConfig.getInstance().APPLE_ENV)) {
-        			throw new Exception("settings: " + DisClientConfig.ENV_NAME + "  cannot find");
+        			if(DisClientConfig.getInstance().ENABLE_DISCONF)
+        				throw new Exception("settings: " + DisClientConfig.ENV_NAME + "  cannot find");
         		}
         		else {
         			DisClientConfig.getInstance().ENV = DisClientConfig.getInstance().APPLE_ENV;

@@ -83,7 +83,7 @@ public final class DisClientConfig {
      */
     public static final String CONF_SERVER_HOST_NAME = "disconf.conf_server_host";
     @DisInnerConfigAnnotation(name = DisClientConfig.CONF_SERVER_HOST_NAME)
-    public String CONF_SERVER_HOST = "configlist.appleframework.com";
+    public String CONF_SERVER_HOST = "disconf.appleframework.com";
 
     private List<String> hostList;
 

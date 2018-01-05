@@ -40,7 +40,7 @@ public class DisInnerConfigHelper {
         // 服务器地址
         if (StringUtils.isEmpty(DisClientConfig.getInstance().CONF_SERVER_HOST)) {
             //throw new Exception("settings: " + DisClientConfig.CONF_SERVER_HOST_NAME + " cannot find");
-        	DisClientConfig.getInstance().CONF_SERVER_HOST = "configlist.appleframework.com";
+        	DisClientConfig.getInstance().CONF_SERVER_HOST = "disconf.appleframework.com";
         }
 
         DisClientConfig.getInstance().setHostList(StringUtil.parseStringToStringList(DisClientConfig.getInstance().CONF_SERVER_HOST, ","));

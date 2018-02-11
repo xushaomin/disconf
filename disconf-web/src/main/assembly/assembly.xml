@@ -21,6 +21,11 @@
             <outputDirectory>webapp</outputDirectory>
             <fileMode>0644</fileMode>
         </fileSet>
+        <fileSet>
+            <directory>html</directory>
+            <outputDirectory>webapp/html</outputDirectory>
+            <fileMode>0644</fileMode>
+        </fileSet>
     </fileSets>
     <dependencySets>
         <dependencySet>

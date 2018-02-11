@@ -3,7 +3,6 @@
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>disconf-web</artifactId>
-    <packaging>war</packaging>
 
     <url>https://github.com/knightliao/disconf/tree/master/disconf-web</url>
     <description>https://github.com/knightliao/disconf/tree/master/disconf-web</description>
@@ -331,11 +330,19 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
+        
+        <dependency>
+  			<groupId>com.appleframework.boot</groupId>
+  			<artifactId>apple-boot-jetty8</artifactId>
+  			<version>0.3.3.RELEASE</version>
+		</dependency>
 
     </dependencies>
 
     <!-- build -->
     <build>
+    
+    	<!-- 
         <defaultGoal>package</defaultGoal>
         <finalName>${project.artifactId}</finalName>
 
@@ -347,6 +354,7 @@
                 </includes>
             </resource>
         </resources>
+         -->
 
         <plugins>
             <plugin>
@@ -354,6 +362,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
             </plugin>
 
+			<!-- 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
@@ -368,6 +377,25 @@
                     </webResources>
                 </configuration>
             </plugin>
+             -->
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.2.1</version>
+				<configuration>
+					<descriptor>src/main/assembly/assembly.xml</descriptor>
+				</configuration>
+				<executions>
+					<execution>
+						<id>make-assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 
         </plugins>
     </build>
